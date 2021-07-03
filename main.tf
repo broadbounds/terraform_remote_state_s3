@@ -71,7 +71,7 @@ provider "aws" {
 
 # We create a new VPC
 resource "aws_vpc" "vpc" {
-   cidr_block = "192.168.0.0/16"
+   cidr_block = var.vpc_cidr_block
    instance_tenancy = "default"
    tags = {
       Name = "VPC"
@@ -86,7 +86,7 @@ resource "aws_subnet" "public_subnet" {
       aws_vpc.vpc,
    ]
    vpc_id = aws_vpc.vpc.id
-   cidr_block = "192.168.0.0/24"
+   cidr_block = var.public_subnet_cidr_block
    availability_zone_id = "use2-az1"
    tags = {
       Name = "public-subnet"
@@ -101,7 +101,7 @@ resource "aws_subnet" "private_subnet" {
       aws_vpc.vpc,
    ]
    vpc_id = aws_vpc.vpc.id
-   cidr_block = "192.168.1.0/24"
+   cidr_block = var.private_subnet_cidr_block
    availability_zone_id = "use2-az1"
    tags = {
       Name = "private-subnet"
