@@ -13,6 +13,21 @@ variable "secret_key" {
   default     = ""
 }
 
+variable "vpc_cidr_block" {
+  type        = string
+  default     = "192.168.0.0/16"
+}
+
+variable "public_subnet_cidr_block" {
+  type        = string
+  default     = "192.168.10.0/24"
+}
+
+variable "private_subnet_cidr_block" {
+  type        = string
+  default     = "192.168.20.0/24"
+}
+
 variable "cloudmapper_access_key" {
   type        = string
   default     = ""
