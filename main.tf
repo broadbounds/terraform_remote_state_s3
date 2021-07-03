@@ -29,7 +29,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "terraform_state" {
   # TODO: change this to your own name! S3 bucket names must be *globally* unique.
-  bucket = "broadbounds_terraform_remote_state_s3"
+  bucket = "broadbounds-terraform-remote-state-s3"
 
   # Enable versioning so we can see the full revision history of our
   # state files
