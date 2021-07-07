@@ -73,8 +73,8 @@ terraform {
     bucket         = "broadbounds-terraform-remote-state-s3"
     key            = "global/s3/terraform.tfstate"
     region         = var.aws_region
-   access_key = var.access_key
-   secret_key = var.secret_key
+    access_key = var.access_key
+    secret_key = var.secret_key
     # Replace this with your DynamoDB table name!
     dynamodb_table = "broadbounds-terraform-remote-state-s3-locks"
     encrypt        = true
