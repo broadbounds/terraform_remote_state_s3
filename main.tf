@@ -62,6 +62,26 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 
+
+# ------------------------------------------------------------------------------
+# CONFIGURE TERRAFORM BACKEND
+# ------------------------------------------------------------------------------
+
+terraform {
+  backend "s3" {
+    # Replace this with your bucket name!
+    bucket         = "broadbounds-terraform-remote-state-s3"
+    key            = "global/s3/terraform.tfstate"
+    region         = var.aws_region
+   access_key = var.access_key
+   secret_key = var.secret_key
+    # Replace this with your DynamoDB table name!
+    dynamodb_table = "broadbounds-terraform-remote-state-s3-locks"
+    encrypt        = true
+  }
+}
+
+
 # We create a new VPC
 resource "aws_vpc" "vpc" {
    cidr_block = var.vpc_cidr_block
