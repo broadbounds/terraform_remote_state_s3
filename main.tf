@@ -66,20 +66,12 @@ resource "aws_dynamodb_table" "terraform_locks" {
 # ------------------------------------------------------------------------------
 # CONFIGURE TERRAFORM BACKEND
 # ------------------------------------------------------------------------------
-
 terraform {
-  backend "s3" {}
-}
-
-data "terraform_remote_state" "state" {
-  backend = "s3"
-  config {
+  backend "s3" {
     # Replace this with your bucket name!
     bucket         = "broadbounds-terraform-remote-state-s3"
     key            = "global/s3/terraform.tfstate"
-    region         = var.aws_region
-    access_key = var.access_key
-    secret_key = var.secret_key
+    region         = "us-east-2"
     # Replace this with your DynamoDB table name!
     dynamodb_table = "broadbounds-terraform-remote-state-s3-locks"
     encrypt        = true
