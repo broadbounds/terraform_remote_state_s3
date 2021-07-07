@@ -68,7 +68,12 @@ resource "aws_dynamodb_table" "terraform_locks" {
 # ------------------------------------------------------------------------------
 
 terraform {
-  backend "s3" {
+  backend "s3" {}
+}
+
+data "terraform_remote_state" "state" {
+  backend = "s3"
+  config {
     # Replace this with your bucket name!
     bucket         = "broadbounds-terraform-remote-state-s3"
     key            = "global/s3/terraform.tfstate"
@@ -80,7 +85,6 @@ terraform {
     encrypt        = true
   }
 }
-
 
 # We create a new VPC
 resource "aws_vpc" "vpc" {
