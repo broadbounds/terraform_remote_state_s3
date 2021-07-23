@@ -76,6 +76,7 @@ terraform {
     dynamodb_table = "broadbounds-terraform-remote-state-s3-locks"
     encrypt        = true
   }
+  depends_on = [aws_s3_bucket.terraform_state, aws_dynamodb_table.terraform_locks]
 }
 
 # We create a new VPC
