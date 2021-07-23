@@ -76,7 +76,10 @@ terraform {
     dynamodb_table = "broadbounds-terraform-remote-state-s3-locks"
     encrypt        = true
   }
-  depends_on = [aws_s3_bucket.terraform_state, aws_dynamodb_table.terraform_locks]
+  # An argument named "depends_on" is not expected here
+  # this is why we first have to create those resources to then run our terraform with remote state in s3
+  # the state file will be local on the first run to create the resources, then will be remote on the second run
+  #depends_on = [aws_s3_bucket.terraform_state, aws_dynamodb_table.terraform_locks]
 }
 
 # We create a new VPC
